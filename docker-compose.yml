@@ -2,16 +2,14 @@ version: '3.4'
 
 services:
     mosquitto:
-        image: eclipse-mosquitto
-        expose:
-            - 1883
+        image: toke/mosquitto
+        container_name: mqtt
         ports:
             - 1883:1883
+            - 9001:9001
         volumes:
-            - ./mosquitto.conf:/mosquitto.conf
-            - mosquitto-data:/mosquitto/data
-            - mosquitto-log:/mosquitto/log
+            - ./mqtt/config:/mqtt/config:ro
+            - mqtt-data:/mqtt/data
 
 volumes:
-    mosquitto-data:
-    mosquitto-log:
+    mqtt-data:
