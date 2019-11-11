@@ -1,5 +1,4 @@
 import paho.mqtt.client as mqtt
-import atexit
 import time
 
 
@@ -153,7 +152,6 @@ class MQTTListener:
         ''' Connect to MQTT broker and start publishing sensor values '''
         if not self._connected:
             self._start_client()
-            atexit.register(self.disconnect)
 
     def disconnect(self):
         ''' Disconnect from MQTT broker and stop reading sensor '''
@@ -161,7 +159,6 @@ class MQTTListener:
             self._client.loop_stop()
             self._client.disconnect()
         self._client = None
-        atexit.unregister(self.disconnect)
 
     def _start_client(self):
         self._client = mqtt.Client(
