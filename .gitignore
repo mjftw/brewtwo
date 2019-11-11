@@ -1,2 +1,6 @@
+# MQTT broker private
 mqtt/certs
 mqtt/auth
+
+# VS Code
+.vscode
