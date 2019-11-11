@@ -6,10 +6,30 @@ services:
         container_name: mqtt
         ports:
             - 1883:1883
+            - 8883:8883
             - 9001:9001
+            - 9883:9883
         volumes:
             - ./mqtt/config:/mqtt/config:ro
+            - ./mqtt/certs:/mqtt/certs:ro
+            - ./mqtt/auth:/mqtt/auth:ro
             - mqtt-data:/mqtt/data
+
+    # db:
+    #     image: mysql:5.7
+    #     restart: always
+    #     environment:
+    #         MYSQL_DATABASE: 'db'
+    #         MYSQL_USER: 'user'
+    #         MYSQL_PASSWORD: 'password'
+    #         MYSQL_ROOT_PASSWORD: 'password'
+    #     expose:
+    #         - '3306'
+    #     ports:
+    #         - '3306:3306'
+    #     volumes:
+    #         - db-data:/var/lib/mysql
 
 volumes:
     mqtt-data:
+    db-data:
